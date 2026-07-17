@@ -1,4 +1,4 @@
-# 🐾🐶🐱 Pet Face Expression Classification using Deep Learning 🐾🐶🐱
+# 🐾🐱 Pet Face Expression Classification using Deep Learning 🐾🐱
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-blue.svg">
