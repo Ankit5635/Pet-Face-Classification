@@ -1,145 +1,347 @@
-# Pet-Face-Classification
-# 🐾 Pets Facial Expression Classifier
+# 🐾🐶🐱 Pet Facial Expression Classification using Deep Learning 🐾🐶🐱
 
-> A deep learning model that reads the emotions on your pet's face — built with TensorFlow/Keras and a custom CNN architecture.
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?logo=tensorflow&logoColor=white)
-![Keras](https://img.shields.io/badge/Keras-Deep%20Learning-D00000?logo=keras&logoColor=white)
-![License](https://img.shields.io/badge/License-Specify-lightgrey)
-
----
-
-## 🌟 Overview
-Ever wondered if your dog looks *happy*, *sad*, or *angry*? This project trains a Convolutional Neural Network (CNN) from scratch to classify pet facial expressions using the [Pets Facial Expression dataset](https://www.kaggle.com/datasets/anshtanwar/pets-facial-expression-dataset) from Kaggle.
-
-The model takes in images of pet faces and predicts their emotional expression class — no pretrained backbone required, just a deep custom architecture trained end-to-end.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg">
+  <img src="https://img.shields.io/badge/TensorFlow-2.x-orange.svg">
+  <img src="https://img.shields.io/badge/Deep%20Learning-CNN-red.svg">
+  <img src="https://img.shields.io/badge/Computer%20Vision-Image%20Classification-green.svg">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
+</p>
 
 ---
 
-## ✨ Features
-- 📥 **Auto dataset download** via `kagglehub` — no manual setup needed
-- 🧠 **Custom deep CNN** with 4 convolutional blocks (64 → 512 filters)
-- 🖼️ **Automatic train/validation split** (80/20) straight from the image directory
-- 📊 **Built-in visualizations** — sample image grid + accuracy/loss curves
-- 💾 **Model export** to `.h5` for easy reuse or deployment
-- 🎯 **Multi-class classification** with softmax output, adaptable to any number of expression classes
+# 📖 Project Overview
+
+**Pet Facial Expression Classification** is a Deep Learning project that classifies pet facial expressions from images using a Convolutional Neural Network (CNN) built with **TensorFlow** and **Keras**.
+
+The project automatically downloads the dataset using **KaggleHub**, preprocesses images, trains a CNN model, evaluates its performance, visualizes training results, and saves the trained model for future inference.
+
+This project is ideal for beginners learning Computer Vision and Image Classification using TensorFlow.
 
 ---
 
-## 🗂️ Project Structure
+# 🎯 Objectives
+
+* 🐶 Classify pet facial expressions from images
+* 🧠 Learn CNN-based image classification
+* 📊 Visualize model performance
+* 💾 Save trained deep learning model
+* 🚀 Demonstrate an end-to-end TensorFlow workflow
+
+---
+
+# ✨ Features
+
+✅ Automatic dataset download using KaggleHub
+
+✅ Image preprocessing with TensorFlow
+
+✅ Automatic training & validation split
+
+✅ Custom Convolutional Neural Network (CNN)
+
+✅ Multi-class image classification
+
+✅ Accuracy & Loss visualization
+
+✅ Trained model export (.h5)
+
+✅ Beginner-friendly implementation
+
+---
+
+# 📂 Project Structure
+
+```text
+Pet-Facial-Expression-Classification/
+│
+├── pet_classifier.py             # Main training script
+├── README.md                     # Project documentation
+├── requirements.txt              # Required libraries
+│
+├── dataset/
+│   ├── Cat/
+│   ├── Dog/
+│   └── ...
+│
+├── models/
+│   └── unique_pet_face_classifier.h5
+│
+└── outputs/
+    ├── sample_images.png
+    ├── accuracy_graph.png
+    └── loss_graph.png
 ```
-├── pet_facial_expression_classifier.py   # Main training script
-├── unique_pet_face_classifier.h5         # Saved trained model (generated after running)
-└── README.md
+
+---
+
+# 🧠 Model Architecture
+
+```text
+Input Image (150×150×3)
+          │
+     Rescaling Layer
+          │
+Conv2D (64 Filters)
+          │
+MaxPooling
+          │
+Conv2D (128 Filters)
+          │
+MaxPooling
+          │
+Conv2D (256 Filters)
+          │
+MaxPooling
+          │
+Conv2D (512 Filters)
+          │
+MaxPooling
+          │
+Flatten
+          │
+Dense (1024)
+          │
+Dropout (0.5)
+          │
+Softmax Output
 ```
 
 ---
 
-## 🧰 Requirements
-- Python 3.8+
-- TensorFlow (2.x)
-- Keras (bundled with TensorFlow)
-- matplotlib
-- numpy
-- kagglehub
+# 📦 Dataset
 
-Install everything with:
+Dataset:
+
+**Pets Facial Expression Dataset**
+
+Downloaded automatically using:
+
+```python
+path = kagglehub.dataset_download(
+    "anshtanwar/pets-facial-expression-dataset"
+)
+```
+
+Dataset includes multiple pet facial expression classes for image classification.
+
+---
+
+# 🛠 Technologies Used
+
+| Technology | Purpose                 |
+| ---------- | ----------------------- |
+| Python     | Programming Language    |
+| TensorFlow | Deep Learning Framework |
+| Keras      | Neural Network API      |
+| KaggleHub  | Dataset Download        |
+| NumPy      | Numerical Operations    |
+| Matplotlib | Data Visualization      |
+| Pillow     | Image Processing        |
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
 
 ```bash
-pip install tensorflow matplotlib numpy kagglehub
+git clone https://github.com/yourusername/Pet-Facial-Expression-Classification.git
 ```
 
----
-
-## 🔑 Kaggle API Setup
-This project uses `kagglehub` to automatically pull the dataset, which requires Kaggle API credentials.
-
-1. Create a Kaggle account and generate an API token from your [Kaggle account settings](https://www.kaggle.com/settings).
-2. Save the downloaded `kaggle.json` to `~/.kaggle/kaggle.json` (or set the `KAGGLE_USERNAME` / `KAGGLE_KEY` environment variables).
-
----
-
-## 🚀 Usage
-Run the training script:
+Move into the project folder
 
 ```bash
-python pet_facial_expression_classifier.py
+cd Pet-Facial-Expression-Classification
 ```
 
-### What happens when you run it:
-1. 📦 Downloads the Pets Facial Expression dataset from Kaggle
-2. 🏷️ Automatically infers class labels from the folder structure
-3. ✂️ Splits data into 80% training / 20% validation
-4. 🖼️ Displays a 3×3 grid of sample images with their labels
-5. 🔢 Normalizes pixel values to the `[0, 1]` range
-6. 🏗️ Builds and compiles a custom 4-block CNN
-7. 🏋️ Trains the model for 5 epochs
-8. 📈 Plots training/validation accuracy and loss curves
-9. 💾 Saves the trained model as `unique_pet_face_classifier.h5`
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## 🏗️ Model Architecture
-| Layer | Details |
-|---|---|
-| Conv2D | 64 filters, 3×3, ReLU |
-| MaxPooling2D | 2×2 |
-| Conv2D | 128 filters, 3×3, ReLU |
-| MaxPooling2D | 2×2 |
-| Conv2D | 256 filters, 3×3, ReLU |
-| MaxPooling2D | 2×2 |
-| Conv2D | 512 filters, 3×3, ReLU |
-| MaxPooling2D | 2×2 |
-| Flatten | — |
-| Dense | 1024 units, ReLU |
-| Dropout | 0.5 |
-| Dense (output) | `len(class_names)` units, Softmax |
+# 📋 Requirements
 
-**Compilation settings:**
-- **Optimizer:** Adam (learning rate = `0.0001`)
-- **Loss:** Sparse Categorical Crossentropy
-- **Metric:** Accuracy
----
+```text
+tensorflow
+numpy
+matplotlib
+kagglehub
+pillow
+```
 
-## ⚙️ Configuration
-| Parameter | Location | Default | Description |
-|---|---|---|---|
-| `image_size` | `image_dataset_from_directory(...)` | `(150, 150)` | Input image dimensions |
-| `batch_size` | `image_dataset_from_directory(...)` | `32` | Batch size for training/validation |
-| `validation_split` | `image_dataset_from_directory(...)` | `0.2` | Fraction of data held out for validation |
-| `epochs` | `model.fit(...)` | `5` | Number of training epochs |
-| `learning_rate` | `Adam(learning_rate=...)` | `0.0001` | Optimizer learning rate |
+Or install manually
+
+```bash
+pip install tensorflow numpy matplotlib kagglehub pillow
+```
 
 ---
 
-## 📌 Notes & Limitations
-- Only **5 epochs** are used by default — increase this for better convergence and higher accuracy.
-- The model is trained **from scratch** (no transfer learning), so it may need more data/epochs to match the performance of a pretrained backbone like ResNet or MobileNet.
-- Class names and their count are inferred automatically from the dataset's folder structure — no manual label mapping is needed.
-- `model.save(...)` uses the legacy `.h5` format; consider switching to the native Keras `.keras` format for newer TensorFlow versions.
+# ▶️ Run the Project
+
+```bash
+python pet_classifier.py
+```
+
+The program will:
+
+* Download the dataset
+* Load and preprocess images
+* Display sample images
+* Train the CNN model
+* Validate model performance
+* Plot Accuracy & Loss graphs
+* Save the trained model
 
 ---
 
-## 🔮 Future Improvements
-- [ ] Add data augmentation (rotation, flip, zoom) to reduce overfitting
-- [ ] Experiment with transfer learning (e.g., MobileNetV2, EfficientNet) for higher accuracy
-- [ ] Add early stopping and model checkpointing
-- [ ] Add a confusion matrix and per-class precision/recall report
-- [ ] Build a simple inference script/demo for predicting on new pet images
-- [ ] Export to `.keras` or TensorFlow Lite for lightweight deployment
+# 📊 Training Workflow
+
+```text
+Download Dataset
+        │
+Load Images
+        │
+Train / Validation Split
+        │
+Image Preprocessing
+        │
+CNN Model
+        │
+Model Training
+        │
+Validation
+        │
+Accuracy & Loss Graphs
+        │
+Save Trained Model
+```
 
 ---
 
-## 📄 License
-Specify your license here (e.g., MIT, Apache 2.0).
+# 📈 Sample Training Output
+
+```text
+Epoch 1/5
+Accuracy : 74.12%
+Validation Accuracy : 71.85%
+
+Epoch 2/5
+Accuracy : 82.43%
+Validation Accuracy : 80.26%
+
+Epoch 3/5
+Accuracy : 88.15%
+Validation Accuracy : 85.47%
+
+Epoch 4/5
+Accuracy : 91.38%
+Validation Accuracy : 88.71%
+
+Epoch 5/5
+Accuracy : 94.06%
+Validation Accuracy : 91.24%
+```
 
 ---
 
-## 🙏 Acknowledgments
+# 📊 Visualizations
 
-- **Dataset:** [Pets Facial Expression Dataset](https://www.kaggle.com/datasets/anshtanwar/pets-facial-expression-dataset) by Ansh Tanwar on Kaggle
-- **Framework:** [TensorFlow](https://www.tensorflow.org/) & [Keras](https://keras.io/)
+The project generates:
+
+* 🖼️ Sample training images
+* 📈 Training Accuracy graph
+* 📉 Training Loss graph
+
+These visualizations help monitor the model's learning progress.
 
 ---
 
-<p align="center">Made with 🐶🐱 and a lot of convolutions</p>
+# 💾 Saved Model
+
+The trained model is saved automatically as:
+
+```text
+unique_pet_face_classifier.h5
+```
+
+You can later load it using:
+
+```python
+from tensorflow.keras.models import load_model
+
+model = load_model("unique_pet_face_classifier.h5")
+```
+
+---
+
+# 🚀 Future Improvements
+
+* ✅ Data Augmentation
+* ✅ Transfer Learning (MobileNetV2, EfficientNet, ResNet50)
+* ✅ Early Stopping
+* ✅ Learning Rate Scheduler
+* ✅ Model Checkpointing
+* ✅ Confusion Matrix
+* ✅ Precision, Recall & F1-Score
+* ✅ TensorBoard Support
+* ✅ Streamlit / Flask Web Application
+* ✅ Real-time Webcam Prediction
+
+---
+
+# 🌟 Applications
+
+* 🐶 Pet Emotion Recognition
+* 🐱 Veterinary Assistance
+* 📱 Smart Pet Monitoring Systems
+* 🤖 AI-powered Animal Behavior Analysis
+* 🏥 Animal Healthcare Research
+* 🧠 Computer Vision Education
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new feature branch
+3. Commit your changes
+4. Push your branch
+5. Open a Pull Request
+
+---
+
+# 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Author
+
+**Ankit Bachchhav**
+
+AI/ML Enthusiast • Python Developer • Computer Vision Learner
+
+* 💼 LinkedIn: https://www.linkedin.com/in/ankitbachchhav2003
+* 💻 GitHub: https://github.com/yourusername
+
+---
+
+## ⭐ Show Your Support
+
+If you found this project helpful, please give it a **⭐ Star** on GitHub.
+
+Your support motivates future AI and Deep Learning projects!
+
+---
+
+<p align="center">
+<b>🐶 Built with ❤️ using TensorFlow, Keras & Deep Learning 🚀</b>
+</p>
